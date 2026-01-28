@@ -6,13 +6,13 @@ func _enter_tree() -> void:
 		"WaveScatteredMultiInstance3D_OPEN_STYLIZED",
 		"Node3D",
 		preload("res://addons/OpenStylized3D/wave_multi_instance/wave.gd"),
-		null
+		preload("res://addons/OpenStylized3D/icon.png")
 	)
 	add_custom_type(
 		"GroupScatteredMultiInstance3D_OPEN_STYLIZED",
 		"Node3D",
 		preload("res://addons/OpenStylized3D/grouped_object/grouped.gd"),
-		null
+		preload("res://addons/OpenStylized3D/icon.png")
 	)
 func _exit_tree() -> void:
 	remove_custom_type("GroupMultiInstance3D_OPEN_STYLIZED")

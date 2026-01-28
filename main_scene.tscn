@@ -65,7 +65,7 @@ material_override = SubResource("StandardMaterial3D_hq1ik")
 mesh = ExtResource("4_8mm7a")
 
 [node name="leaves" type="Node3D" parent="tree_01" node_paths=PackedStringArray("object")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.028494, 3.1012073, -3.1676102)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.028494, 3.1304932, -3.1676102)
 script = ExtResource("5_8mm7a")
 object = NodePath("../leaves_config")
 object_size = 9
