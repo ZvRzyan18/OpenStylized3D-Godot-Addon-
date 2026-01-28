@@ -53,7 +53,7 @@ texture = ExtResource("2_2c62f")
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-visible = false
+transform = Transform3D(0.12865713, 0, -0.99168915, 0, 1, 0, 0.99168915, 0, 0.12865713, -0.22745037, 1.2176442, 0)
 
 [node name="floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(86.45329, 0, 0, 0, 1, 0, 0, 0, 22.499544, 0, 0, 0)
@@ -84,12 +84,15 @@ random_scale_max_range = Vector3(0.5, 0.5, 0.5)
 randomized_position_area = Vector3(2.5, 2.5, 2.5)
 mesh_type = SubResource("QuadMesh_nfk4m")
 texture = ExtResource("6_hq1ik")
-wave_strength = 0.272
+wave_strength = 0.072
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.04588573, 0.645151, -0.76267594, -0.03874489, 0.7640551, 0.6439866, 0.99819505, 1.5941319e-09, 0.06005553, 0, 0, 0)
+light_color = Color(1, 1, 0.92156863, 1)
+light_energy = 4.064
 shadow_enabled = true
+shadow_opacity = 0.9
 
 [node name="tree02" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.724, 0, 2.9685202)
@@ -105,7 +108,7 @@ group_area_size = Vector3(1.8, 0.5, 1.8)
 metadata/_custom_type_script = "uid://chbwbsoqltrs5"
 
 [node name="leaves2" type="Node3D" parent="tree02" node_paths=PackedStringArray("object")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0887322, 2.32206, -1.0320911)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2317791, 2.32206, -1.1347804)
 script = ExtResource("5_8mm7a")
 object = NodePath("../leaves_config")
 position_seed = Vector3i(1347, 2356, 8885)
@@ -117,8 +120,9 @@ visible = false
 script = ExtResource("1_0f027")
 bilboard_rotate_XZ = false
 bilboard_rotate_XYZ = true
-instance_count = 20
+instance_count = 40
 randomized_position_area = Vector3(1, 1, 1)
 mesh_type = SubResource("QuadMesh_qwutr")
 texture = ExtResource("8_7ycvg")
+wave_speed = 2.0
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
