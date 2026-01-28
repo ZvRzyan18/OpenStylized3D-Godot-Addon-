@@ -2,6 +2,8 @@
 Lets Create Stylized tree and grass in Godot!
 **v:1.2.0**
 # Contents
+![My Image](demo_pic.jpg)
+
 **Added Nodes**
 * WaveScatteredMultiInstance3D_OPEN_STYLIZED - used to render grass and leaves using randomizer to scatter the objects
 * GroupScatteredMultiInstance3D_OPEN_STYLIZED - group of scattered object 
