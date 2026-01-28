@@ -1,6 +1,6 @@
 @tool
 extends Node3D
-class_name GroupMultiInstance3D_OPEN_STYLIZED
+class_name GroupScatteredMultiInstance3D_OPEN_STYLIZED
 
 var rng_x : RandomNumberGenerator = null
 var rng_y : RandomNumberGenerator = null
@@ -45,6 +45,6 @@ func initialize() -> void:
 		var dup : Node3D = object.duplicate()
 		dup.visible = true
 		dup.transform = Transform3D(Basis.IDENTITY, Vector3(rng_x.randf_range(0, group_area_size.x), rng_y.randf_range(0, group_area_size.y), rng_z.randf_range(0, group_area_size.z)))
-		add_child(dup as WaveMultiInstance3D_OPEN_STYLIZED)
+		add_child(dup as WaveScatteredMultiInstance3D_OPEN_STYLIZED)
 func _ready() -> void:
 	initialize()

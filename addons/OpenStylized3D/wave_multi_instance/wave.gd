@@ -1,6 +1,6 @@
 @tool
 extends Node3D
-class_name WaveMultiInstance3D_OPEN_STYLIZED
+class_name WaveScatteredMultiInstance3D_OPEN_STYLIZED
 
 var rng_position_x : RandomNumberGenerator = null
 var rng_position_y : RandomNumberGenerator = null
