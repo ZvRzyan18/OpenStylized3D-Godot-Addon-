@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://4xt6k7k7u78y"]
+[gd_scene load_steps=35 format=3 uid="uid://4xt6k7k7u78y"]
 
 [ext_resource type="Script" uid="uid://dkm2a82v3pr37" path="res://addons/OpenStylized3D/wave_multi_instance/wave.gd" id="1_0f027"]
 [ext_resource type="Texture2D" uid="uid://bdt4p5o1o4dra" path="res://textures/grass01.png" id="2_2c62f"]
@@ -8,6 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://7yhp5ofke81u" path="res://textures/leaves01.png" id="6_hq1ik"]
 [ext_resource type="ArrayMesh" uid="uid://ccxmcaqpupeci" path="res://models/tree02.obj" id="7_66tet"]
 [ext_resource type="Texture2D" uid="uid://bkm2up1n2bl6h" path="res://textures/leaves02.png" id="8_7ycvg"]
+[ext_resource type="Texture2D" uid="uid://cvlyw4aoq146m" path="res://textures/tree02.jpg" id="9_qwutr"]
+[ext_resource type="ArrayMesh" uid="uid://dioarfngcjw4s" path="res://models/tree03.obj" id="10_671wp"]
+[ext_resource type="Texture2D" uid="uid://hpkjpnf62yr0" path="res://textures/leaves03.png" id="11_mo76n"]
+[ext_resource type="Texture2D" uid="uid://b2pbqqi6k4s4i" path="res://textures/leaves04.png" id="12_671wp"]
+[ext_resource type="Texture2D" uid="uid://dhwbbjkml88np" path="res://textures/floor01_base.jpg" id="13_2jcla"]
+[ext_resource type="Script" uid="uid://cpsgc7ah81yjq" path="res://addons/OpenStylized3D/masked_layer_material/masked_layer_texture.gd" id="14_m35m6"]
+[ext_resource type="Texture2D" uid="uid://hif0bvcwp1el" path="res://textures/floor01_mask.png" id="15_m35m6"]
+[ext_resource type="Script" uid="uid://opxmkka4mkmj" path="res://addons/OpenStylized3D/masked_layer_material/masked_layer_material.gd" id="15_u0ygc"]
+[ext_resource type="Texture2D" uid="uid://vv1211wefmia" path="res://textures/floor01_dirt.jpg" id="16_u0ygc"]
+[ext_resource type="Texture2D" uid="uid://cvq6731voefrd" path="res://textures/floor02_mask.png" id="18_7th4q"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_2c62f"]
 
@@ -24,6 +34,113 @@ albedo_texture = ExtResource("3_d5x1h")
 
 [sub_resource type="QuadMesh" id="QuadMesh_qwutr"]
 size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_42l1d"]
+albedo_texture = ExtResource("9_qwutr")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2jcla"]
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="QuadMesh" id="QuadMesh_mo76n"]
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="Resource" id="Resource_m35m6"]
+script = ExtResource("14_m35m6")
+texture = ExtResource("16_u0ygc")
+mask = ExtResource("15_m35m6")
+texture_repeat_times = Vector2i(10, 10)
+metadata/_custom_type_script = "uid://cpsgc7ah81yjq"
+
+[sub_resource type="Shader" id="Shader_6jybn"]
+code = "
+	shader_type spatial;
+	uniform sampler2D m_texture : filter_nearest_mipmap;
+	varying vec2 uv;
+	uniform sampler2D layer0: filter_nearest_mipmap;
+uniform sampler2D mask0: filter_nearest_mipmap;
+varying vec2 uv0;
+
+	void vertex() {
+	uv0 = UV * vec2(10.0, 10.0);
+
+	uv = UV * vec2(5.0, 5.0);
+
+	
+	}
+	
+	void fragment() {
+		vec4 base = texture(m_texture, uv);
+	base = mix(base, texture(layer0, uv0), texture(mask0, UV).a);
+
+	ALBEDO = base.rgb;
+	// srgb to linear
+	ALBEDO = ALBEDO * (ALBEDO * (ALBEDO * 0.305306 + 0.682171) +0.0125228);
+	}
+	"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84odl"]
+render_priority = 0
+shader = SubResource("Shader_6jybn")
+shader_parameter/m_texture = ExtResource("13_2jcla")
+shader_parameter/layer0 = ExtResource("16_u0ygc")
+shader_parameter/mask0 = ExtResource("15_m35m6")
+script = ExtResource("15_u0ygc")
+texture_filter = 1
+mask_filter = 1
+base_texture = ExtResource("13_2jcla")
+base_repeat_times = Vector2i(5, 5)
+layered_texture = Array[ExtResource("14_m35m6")]([SubResource("Resource_m35m6")])
+metadata/_custom_type_script = "uid://opxmkka4mkmj"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ak604"]
+
+[sub_resource type="Resource" id="Resource_6jybn"]
+script = ExtResource("14_m35m6")
+texture = ExtResource("16_u0ygc")
+mask = ExtResource("18_7th4q")
+texture_repeat_times = Vector2i(5, 5)
+metadata/_custom_type_script = "uid://cpsgc7ah81yjq"
+
+[sub_resource type="Shader" id="Shader_84odl"]
+code = "
+	shader_type spatial;
+	uniform sampler2D m_texture : filter_nearest_mipmap;
+	varying vec2 uv;
+	uniform sampler2D layer0: filter_nearest_mipmap;
+uniform sampler2D mask0: filter_nearest_mipmap;
+varying vec2 uv0;
+
+	void vertex() {
+	uv0 = UV * vec2(5.0, 5.0);
+
+	uv = UV * vec2(5.0, 5.0);
+
+	
+	}
+	
+	void fragment() {
+		vec4 base = texture(m_texture, uv);
+	base = mix(base, texture(layer0, uv0), texture(mask0, UV).a);
+
+	ALBEDO = base.rgb;
+	// srgb to linear
+	ALBEDO = ALBEDO * (ALBEDO * (ALBEDO * 0.305306 + 0.682171) +0.0125228);
+	}
+	"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ak604"]
+render_priority = 0
+shader = SubResource("Shader_84odl")
+shader_parameter/m_texture = ExtResource("13_2jcla")
+shader_parameter/layer0 = ExtResource("16_u0ygc")
+shader_parameter/mask0 = ExtResource("18_7th4q")
+script = ExtResource("15_u0ygc")
+texture_filter = 1
+mask_filter = 1
+base_texture = ExtResource("13_2jcla")
+base_repeat_times = Vector2i(5, 5)
+layered_texture = Array[ExtResource("14_m35m6")]([SubResource("Resource_6jybn")])
+metadata/_custom_type_script = "uid://opxmkka4mkmj"
 
 [node name="MainScene" type="Node3D"]
 
@@ -53,10 +170,11 @@ texture = ExtResource("2_2c62f")
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.12865713, 0, -0.99168915, 0, 1, 0, 0.99168915, 0, 0.12865713, -0.22745037, 1.2176442, 0)
+transform = Transform3D(0.12865713, 0, -0.99168915, 0, 1, 0, 0.99168915, 0, 0.12865713, -1.9223742, 1.2176442, -3.2907553)
 
 [node name="floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(86.45329, 0, 0, 0, 1, 0, 0, 0, 22.499544, 0, 0, 0)
+transform = Transform3D(86, 0, 0, 0, 3.822, 0, 0, 0, 86, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_2c62f")
 
 [node name="tree_01" type="MeshInstance3D" parent="."]
@@ -90,9 +208,9 @@ metadata/_custom_type_script = "uid://dkm2a82v3pr37"
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.04588573, 0.645151, -0.76267594, -0.03874489, 0.7640551, 0.6439866, 0.99819505, 1.5941319e-09, 0.06005553, 0, 0, 0)
 light_color = Color(1, 1, 0.92156863, 1)
-light_energy = 4.064
+light_energy = 3.813
 shadow_enabled = true
-shadow_opacity = 0.9
+shadow_opacity = 0.94
 
 [node name="tree02" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.724, 0, 2.9685202)
@@ -100,11 +218,11 @@ material_override = SubResource("StandardMaterial3D_wr18j")
 mesh = ExtResource("7_66tet")
 
 [node name="leaves" type="Node3D" parent="tree02" node_paths=PackedStringArray("object")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1819539, 1.2503936, -1.1602364)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2067156, 1.2503936, -1.0464218)
 script = ExtResource("5_8mm7a")
 object = NodePath("../leaves_config")
 position_seed = Vector3i(1354, 2339, 8883)
-group_area_size = Vector3(1.8, 0.5, 1.8)
+group_area_size = Vector3(1.4, 0.5, 1.4)
 metadata/_custom_type_script = "uid://chbwbsoqltrs5"
 
 [node name="leaves2" type="Node3D" parent="tree02" node_paths=PackedStringArray("object")]
@@ -126,3 +244,77 @@ mesh_type = SubResource("QuadMesh_qwutr")
 texture = ExtResource("8_7ycvg")
 wave_speed = 2.0
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
+
+[node name="tree03" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8279564, -0.040700197, -9.532473)
+material_override = SubResource("StandardMaterial3D_42l1d")
+mesh = ExtResource("10_671wp")
+
+[node name="leaves_config" type="Node3D" parent="tree03"]
+visible = false
+script = ExtResource("1_0f027")
+bilboard_rotate_XZ = false
+bilboard_rotate_XYZ = true
+instance_count = 80
+randomized_position_area = Vector3(1, 1, 1)
+mesh_type = SubResource("QuadMesh_2jcla")
+texture = ExtResource("11_mo76n")
+metadata/_custom_type_script = "uid://dkm2a82v3pr37"
+
+[node name="GroupScatteredMultiInstance3D_OPEN_STYLIZED" type="Node3D" parent="tree03" node_paths=PackedStringArray("object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0016186, 1.5829253, -2.021103)
+script = ExtResource("5_8mm7a")
+object = NodePath("../leaves_config")
+object_size = 30
+position_seed = Vector3i(1353, 2329, 8907)
+group_area_size = Vector3(3, 2.5, 3)
+metadata/_custom_type_script = "uid://chbwbsoqltrs5"
+
+[node name="bushes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.970372)
+
+[node name="bush" type="Node3D" parent="bushes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6399381, -0.25637352, 0.49742985)
+script = ExtResource("1_0f027")
+bilboard_rotate_XZ = false
+bilboard_rotate_XYZ = true
+instance_count = 200
+seed_position = Vector3i(4548, 1240, 9443)
+randomized_position_area = Vector3(1.2, 1, 1.2)
+mesh_type = SubResource("QuadMesh_mo76n")
+texture = ExtResource("12_671wp")
+metadata/_custom_type_script = "uid://dkm2a82v3pr37"
+
+[node name="bush2" type="Node3D" parent="bushes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.105933, -0.25637352, 2.2409506)
+script = ExtResource("1_0f027")
+bilboard_rotate_XZ = false
+bilboard_rotate_XYZ = true
+instance_count = 200
+seed_position = Vector3i(4548, 1240, 9443)
+randomized_position_area = Vector3(1.2, 1, 1.2)
+mesh_type = SubResource("QuadMesh_mo76n")
+texture = ExtResource("12_671wp")
+metadata/_custom_type_script = "uid://dkm2a82v3pr37"
+
+[node name="bush3" type="Node3D" parent="bushes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2844276, -0.25637352, 3.381441)
+script = ExtResource("1_0f027")
+bilboard_rotate_XZ = false
+bilboard_rotate_XYZ = true
+instance_count = 200
+seed_position = Vector3i(4548, 1240, 9443)
+randomized_position_area = Vector3(1.2, 1, 1.2)
+mesh_type = SubResource("QuadMesh_mo76n")
+texture = ExtResource("12_671wp")
+metadata/_custom_type_script = "uid://dkm2a82v3pr37"
+
+[node name="mask_textured_object" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.700851, 0.06851131, -2.441918)
+material_override = SubResource("ShaderMaterial_84odl")
+mesh = SubResource("PlaneMesh_ak604")
+
+[node name="mask_textured_object2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.700851, 0.06851131, -6.7659407)
+material_override = SubResource("ShaderMaterial_ak604")
+mesh = SubResource("PlaneMesh_ak604")

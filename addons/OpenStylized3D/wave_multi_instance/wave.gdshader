@@ -54,7 +54,6 @@ void vertex() {
     POSITION = PROJECTION_MATRIX * VIEW_MATRIX * vec4(world_pos, 1.0);
 }
 
-
 void fragment() {
    vec4 final_color = texture(m_texture, UV);
 	ALBEDO = final_color.rgb;

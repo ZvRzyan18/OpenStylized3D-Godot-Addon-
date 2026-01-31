@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c74ua565ca17t"
-path.s3tc="res://.godot/imported/icon.png-935695ae41d64d74c449b22dda1abd6b.s3tc.ctex"
+uid="uid://b2pbqqi6k4s4i"
+path.s3tc="res://.godot/imported/leaves04.png-22c222873416f3530861ae7e1ab755b0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/OpenStylized3D/icon.png"
-dest_files=["res://.godot/imported/icon.png-935695ae41d64d74c449b22dda1abd6b.s3tc.ctex"]
+source_file="res://textures/leaves04.png"
+dest_files=["res://.godot/imported/leaves04.png-22c222873416f3530861ae7e1ab755b0.s3tc.ctex"]
 
 [params]
 
