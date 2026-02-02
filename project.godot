@@ -22,4 +22,5 @@ enabled=PackedStringArray("res://addons/OpenStylized3D/plugin.cfg")
 [rendering]
 
 renderer/rendering_method="mobile"
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
 environment/defaults/default_clear_color=Color(0.54099095, 0.5409904, 0.54099065, 1)
