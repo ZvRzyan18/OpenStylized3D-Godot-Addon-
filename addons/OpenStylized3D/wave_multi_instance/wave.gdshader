@@ -57,7 +57,7 @@ void vertex() {
 void fragment() {
    vec4 final_color = texture(m_texture, UV);
 	ALBEDO = final_color.rgb;
-
+	ALBEDO = ALBEDO * (ALBEDO * (ALBEDO * 0.305306 + 0.682171) +0.0125228);
 	if (final_color.a < 0.5) {
       discard;
     }

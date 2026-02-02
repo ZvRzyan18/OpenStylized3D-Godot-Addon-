@@ -1,6 +1,6 @@
 # OpenStylized3D-Godot-Addon-
 Lets Create Stylized Trees and Grass in Godot!
-**v:1.3.0**
+**v:1.3.1**
 
 Its easy to use, Everything can be configured inside the inspector
 
@@ -12,7 +12,7 @@ Its easy to use, Everything can be configured inside the inspector
 
 # Features
 **Added Resources**
-* MaskedLayerMaterial3D_OPEN_STYLIZED - custom object material with masks and layers
+* MaskedLayerMaterial3D_OPEN_STYLIZED - custom object material with masks and layers (DO NOT USE TOO MANY LAYERS)
 * MaskedLayerTexture2D_OPEN_STYLIZED - pair of layer texture and mask
 
 **Added Nodes**

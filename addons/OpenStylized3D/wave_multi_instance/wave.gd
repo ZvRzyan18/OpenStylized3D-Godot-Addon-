@@ -128,6 +128,13 @@ var wave_synchronize : bool = false:
 		wave_synchronize = val
 		initialize()
 
+## cast shadow settings
+@export_enum("CAST_SHADOW_ON", "CAST_SHADOW_OFF", "CAST_SHADOW_DOUBLE_SIDED", "CAST_SHADOW_SHADOWS_ONLY")
+var cast_shadow : int = 0:
+	set(val):
+		cast_shadow = val
+		initialize()
+
 var shader : ShaderMaterial =  ShaderMaterial.new()
 
 func create_objects() -> void:
@@ -173,8 +180,17 @@ func initialize() -> void:
 	multi_mesh_instance.multimesh = MultiMesh.new()
 	multi_mesh_instance.multimesh.mesh = mesh_type
 	multi_mesh_instance.material_override = shader
-	#multi_mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
-	
+	match cast_shadow:
+		0:
+			multi_mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+		1:
+			multi_mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		2:
+			multi_mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED
+		3:
+			multi_mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+
+
 	if multi_mesh_instance.multimesh != null:
 		multi_mesh_instance.multimesh.instance_count = 0
 		multi_mesh_instance.multimesh.transform_format = MultiMesh.TransformFormat.TRANSFORM_3D

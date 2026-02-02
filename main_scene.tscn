@@ -156,6 +156,7 @@ texture = ExtResource("2_2c62f")
 wave_speed = 1.5
 wave_strength = 0.042
 wave_synchronize = true
+cast_shadow = 1
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
 
 [node name="grass_02" type="Node3D" parent="."]
@@ -167,6 +168,7 @@ random_scale_max_range = Vector3(0, 0.8, 0)
 randomized_position_area = Vector3(2, 0, 2)
 mesh_type = SubResource("QuadMesh_2c62f")
 texture = ExtResource("2_2c62f")
+cast_shadow = 1
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -203,6 +205,7 @@ randomized_position_area = Vector3(2.5, 2.5, 2.5)
 mesh_type = SubResource("QuadMesh_nfk4m")
 texture = ExtResource("6_hq1ik")
 wave_strength = 0.072
+cast_shadow = 2
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -243,6 +246,7 @@ randomized_position_area = Vector3(1, 1, 1)
 mesh_type = SubResource("QuadMesh_qwutr")
 texture = ExtResource("8_7ycvg")
 wave_speed = 2.0
+cast_shadow = 2
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
 
 [node name="tree03" type="MeshInstance3D" parent="."]
@@ -259,9 +263,10 @@ instance_count = 80
 randomized_position_area = Vector3(1, 1, 1)
 mesh_type = SubResource("QuadMesh_2jcla")
 texture = ExtResource("11_mo76n")
+cast_shadow = 2
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
 
-[node name="GroupScatteredMultiInstance3D_OPEN_STYLIZED" type="Node3D" parent="tree03" node_paths=PackedStringArray("object")]
+[node name="leaves01" type="Node3D" parent="tree03" node_paths=PackedStringArray("object")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0016186, 1.5829253, -2.021103)
 script = ExtResource("5_8mm7a")
 object = NodePath("../leaves_config")
@@ -310,11 +315,11 @@ texture = ExtResource("12_671wp")
 metadata/_custom_type_script = "uid://dkm2a82v3pr37"
 
 [node name="mask_textured_object" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.700851, 0.06851131, -2.441918)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 3.700851, 0.06851131, -2.441918)
 material_override = SubResource("ShaderMaterial_84odl")
 mesh = SubResource("PlaneMesh_ak604")
 
 [node name="mask_textured_object2" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.700851, 0.06851131, -6.7659407)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.3379984, 0.3576098, -12.485424)
 material_override = SubResource("ShaderMaterial_ak604")
 mesh = SubResource("PlaneMesh_ak604")
