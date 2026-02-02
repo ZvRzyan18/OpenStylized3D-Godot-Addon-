@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="open_stylized_3d"
+run/main_scene="uid://4xt6k7k7u78y"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
