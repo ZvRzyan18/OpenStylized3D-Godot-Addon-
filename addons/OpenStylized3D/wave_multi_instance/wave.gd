@@ -135,6 +135,7 @@ var cast_shadow : int = 0:
 		cast_shadow = val
 		initialize()
 
+
 var shader : ShaderMaterial =  ShaderMaterial.new()
 
 func create_objects() -> void:
@@ -157,18 +158,24 @@ func create_objects() -> void:
 	rng_scale_y.seed = seed_scale.y
 	rng_scale_z = RandomNumberGenerator.new()
 	rng_scale_z.seed = seed_scale.z
+
+
 func initialize() -> void:
 	create_objects()
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
 	shader.shader = load("res://addons/OpenStylized3D/wave_multi_instance/wave.gdshader")
+			
 	shader.set_shader_parameter("m_texture", texture)
 	shader.set_shader_parameter("rotate_type", rotate_mode)
+	
 	if bilboard_rotate_XZ :
 		shader.set_shader_parameter("bilboard_rotate", 0)
 	elif bilboard_rotate_XYZ :
 		shader.set_shader_parameter("bilboard_rotate", 1)
+	elif !bilboard_rotate_XZ && !bilboard_rotate_XYZ:
+		shader.set_shader_parameter("bilboard_rotate", 2)
 	shader.set_shader_parameter("wave_strength", wave_strength)
 	shader.set_shader_parameter("wave_speed", wave_speed)
 	shader.set_shader_parameter("wave_synchronize", wave_synchronize)
@@ -180,6 +187,7 @@ func initialize() -> void:
 	multi_mesh_instance.multimesh = MultiMesh.new()
 	multi_mesh_instance.multimesh.mesh = mesh_type
 	multi_mesh_instance.material_override = shader
+	
 	match cast_shadow:
 		0:
 			multi_mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
