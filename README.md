@@ -1,6 +1,6 @@
 # OpenStylized3D-Godot-Addon-
 Lets Create Stylized Trees and Grass in Godot!
-**v:1.3.1**
+**v:1.3.2**
 
 Its easy to use, Everything can be configured inside the inspector
 
@@ -28,6 +28,7 @@ Its easy to use, Everything can be configured inside the inspector
 * tree01.obj
 * tree02.obj
 * tree03.obj
+* tree04.obj
 * grass01.png
 * leaves01.png
 * leaves02.png
@@ -39,4 +40,5 @@ Its easy to use, Everything can be configured inside the inspector
 * floor01_dirt.jpg
 * floor01_mask.png
 * floor02_mask.png
-
+* terrain01.obj
+* terrain01_mask.png
