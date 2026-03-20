@@ -1,4 +1,5 @@
 shader_type spatial;
+
 uniform sampler2D m_texture : filter_linear_mipmap;
 uniform int rotate_type;
 uniform int bilboard_rotate;
@@ -47,7 +48,8 @@ void vertex() {
 		billboardRot[2].z = camera_rot[2].z;
 		} else if (bilboard_rotate == 1) {
 			billboardRot = camera_rot;
-		}
+		} else if (bilboard_rotate == 2) 
+		 billboardRot = mat3(1.0);
 	}
 
     vec3 world_pos = vec3(MODEL_MATRIX[3].xyz) + mat3(MODEL_MATRIX) * transpose(billboardRot) * current_vertex;
